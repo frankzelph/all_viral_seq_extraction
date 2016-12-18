@@ -16,6 +16,7 @@ These codes build a blast database from the NGS data and blast search the databa
     c. Search the SQL database, "names.dmp", "nodes.dmp", and "merged.dmp" by using "ac2sciname.py", to the species and family  scientific name of each accession.
     
 3. Put all the other codes in the same directory with the NGS data in ".fastq.gz" format. Open a terminal and run the "blast_all.sh" bash codes as below: (# note: make sure all ".sh" file are excutable. if not, use "chmod u+x *.sh " to enable these code files excutably.)
+
     $ ./blast_all.sh
 
 
