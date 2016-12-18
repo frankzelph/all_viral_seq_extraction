@@ -87,7 +87,9 @@ if [ ! -d "seqs" ]; then
 fi
 python ../extract_seq.py ../${file}.fasta blastout/${file}.bn6 ${file}.stat $threshold
 
-echo " Finished searching from $gz_file.\n\n\n"
+echo " Finished searching from $gz_file."
+echo
+echo
 
 
 
