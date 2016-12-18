@@ -1,0 +1,27 @@
+This manuscript is about how to fastly search the "accession2taxid.dump" database in a linux system.
+Required software/tools:
+        1. sqlite3
+        2. python2.7
+        
+        
+1. Firstly, download taxonomy databases from NCBI database:
+   Go to ftp site: ftp://ftp.ncbi.nih.gov/pub/taxonomy/
+   download files:
+                taxdump.tar.gz
+                taxdump_readme.txt
+                accession2taxid/README
+                accession2taxid/nucl_gb.accession2taxid.gz
+
+2. Decompress these files into a folder, eg. "~/NCBI_db/taxonomy".
+
+3. Open a terminal and change directory to "~/NCBI_db/taxonomy", then build a SQL database from "nucl_gb.accession2taxid" as below:
+   $ sqlite3 ac2taxid.db
+   sqlite> .mode tabs
+   sqlite> .import ac2taxid
+   sqlite>  # press Ctl+D to quit
+   # An SQL database named "ac2taxid.db" would be built.
+
+4. Prepare a accession list file with one accession at each line, and put it in the same directory . "ac_extract.py" can be used to get all accessions from a fasta file downloaded from NCBI.
+
+5. Run "ac2taxid.py" to get species and family scientific name from the "ac2taxid.db", "names.dmp", "nodes.dmp", and "merged.dmp", according to accesion.
+        eg. python ac2taxid.py all_viral_accession.txt all_viral_ac2sci_name.txt
