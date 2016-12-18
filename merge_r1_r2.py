@@ -37,11 +37,15 @@ def main(file_list):
     fin = open(file_list, 'r')
     for line in fin:
         tmp = re.split('\t', line.rstrip())
+        if len(tmp) != 3:
+            print "Error: some line in list file \""+file_list+"\" has not 3 columns."
+            os.system("exit 1")
+            return 1
         read1_file = tmp[0]
         read1_fasta = re.split('\.', read1_file)[0]+'.fasta'
         read2_file = tmp[1]
         read2_fasta = re.split('\.', read2_file)[0]+'.fasta'
-        merged_file = re.split('_R1_', read1_file)[0]+'.fasta'
+        merged_file = tmp[3]+'.fasta'
         # prepare read1 fasta file
         bashcommand = "seqtk seq -A "+read1_file + ' > ' +read1_fasta
         os.system(bashcommand)
