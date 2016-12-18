@@ -33,4 +33,4 @@ These codes build a blast database from the NGS data and blast search the databa
 Just run as below:
     
     $ ./blast_all_2.sh   
-It will call "merge_r1_r2.py" to merge read1 and read2, and then call "viral_blast_2.sh"
+It will call "merge_r1_r2.py" to merge read1 and read2 firstly, and then do blast.
