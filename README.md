@@ -29,4 +29,6 @@ These codes build a blast database from the NGS data and blast search the databa
        6. Draw coverage maps for each virus whose mapped reads number is above a defined paramter "threshold" in "coverage.py", and output the results into a newly made directory "cov_figs".
        7. Extract sequences for each virus whose mapped reads number is above a defined paramter "threshold" in "extract_seq.py", and output the reulsts into a newly made directory "seqs".
 
-
+# Merge read1 and read2 file into one before blast
+Just run as below:
+    $./blast_all_2.sh   # it will call "merge_r1_r2.py" to merge read1 and read2, and then call "viral_blast_2.sh"
