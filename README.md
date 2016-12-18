@@ -18,14 +18,14 @@ These codes build a blast database from the NGS data and blast search the databa
 3. Put all the other codes in the same directory with the NGS data in ".fastq.gz" format. Open a terminal and run the "blast_all.sh" bash codes as below: (# note: make sure all ".sh" file are excutable. if not, use "chmod u+x *.sh " to enable these code files excutably.)
     $ ./blast_all.sh
 
-#
+
 # The code will excute in a process as below:
-#       1. Convert illumina fastq.gz file into fasta format using "seqtk".
-#       2. Make a directory named as the NGS filename, and change working directory to this newly directory.
-#       3. Make a directory named "blastdb", and build a blast database in this directory by using the NGS fasta file.
-#       4. Make a directory named "blastout", blastn search all viral sequences from the database, and output the result file into "blastout"
-#       5. Do statistic of the mapped reads, including information of virus accession, virus species name, family name, and mapped reads counts.
-#       6. Draw coverage maps for each virus whose mapped reads number is above a defined paramter "threshold" in "coverage.py", and output the results into a newly made directory "cov_figs".
-#       7. Extract sequences for each virus whose mapped reads number is above a defined paramter "threshold" in "extract_seq.py", and output the reulsts into a newly made directory "seqs".
-#
+       1. Convert illumina fastq.gz file into fasta format using "seqtk".
+       2. Make a directory named as the NGS filename, and change working directory to this newly directory.
+       3. Make a directory named "blastdb", and build a blast database in this directory by using the NGS fasta file.
+       4. Make a directory named "blastout", blastn search all viral sequences from the database, and output the result file into "blastout"
+       5. Do statistic of the mapped reads, including information of virus accession, virus species name, family name, and mapped reads counts.
+       6. Draw coverage maps for each virus whose mapped reads number is above a defined paramter "threshold" in "coverage.py", and output the results into a newly made directory "cov_figs".
+       7. Extract sequences for each virus whose mapped reads number is above a defined paramter "threshold" in "extract_seq.py", and output the reulsts into a newly made directory "seqs".
+
 
