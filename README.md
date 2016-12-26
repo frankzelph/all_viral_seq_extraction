@@ -4,7 +4,7 @@ These codes build a blast database from the NGS data and blast search the databa
 
 # Note: these codes are only tested in bio-linux system.
 1. Some preparation.
-    a. Install softwares including sqlite3, blast-2.5+, python2.7, and seqtk
+    a. Install softwares including sqlite3, blast-2.5+, python2.7, R, and seqtk
     b. Download all viral sequences from NCBI:
        ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/
     c. Download taxonomy data from NCBI:
