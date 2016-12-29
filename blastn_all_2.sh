@@ -5,9 +5,9 @@
 # 	column1		column2		column3
 #	read1file	read2file	merged_file #(with no extension)
 # The read files (NGS data) are in ".fastq.gz" file format
-# if [ ! -f ".*fasta" ] ; then
+if [ ! -f *"fasta" ] ; then
 python merge_r1_r2.py file_list.txt
-# fi
+fi
 
 # The file of target sequences to be extracted in fasta format
 query_seqfile=/home/immu/database/blastdb/viral/viral_all/viral.fna
@@ -25,7 +25,7 @@ threshold=100
 
 for item in `ls `
 do
-	if [ -f "$item" ] && [[ $item == *"fastq.gz" ]] ; then
+	if [ -f "$item" ] && [[ $item == *"fasta" ]] ; then
 		./viral_blastn.sh $item $query_seqfile $ac_mapfile $num_threads $threshold
 	fi
 done

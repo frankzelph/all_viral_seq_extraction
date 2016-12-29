@@ -21,10 +21,11 @@ def merge(read1_file, read2_file, merged_file):
 
 # function: change the read_ids in the NGS data
 def change_rid(fasta_file, read_direct, outfile):
-    fh = open(fastq_file, 'r')
+    fh = open(fasta_file, 'r')
     fout = open(outfile, 'w')
     for record in SeqIO.parse(fh, 'fasta'):
         record.id += read_direct
+        record.description = ''
         SeqIO.write(record, fout, 'fasta')
     fh.close()
     fout.close()
@@ -45,15 +46,16 @@ def main(file_list):
         read1_fasta = re.split('\.', read1_file)[0]+'.fasta'
         read2_file = tmp[1]
         read2_fasta = re.split('\.', read2_file)[0]+'.fasta'
-        merged_file = tmp[3]+'.fasta'
+        merged_file = tmp[2]+'.fasta'
         # prepare read1 fasta file
         bashcommand = "seqtk seq -A "+read1_file + ' > ' +read1_fasta
         os.system(bashcommand)
-        change_rid(read1_fasta, "r1", read1_tmp)
+        
+        change_rid(read1_fasta, "-r1", "read1_tmp.fasta")
         # prepare read2 fasta file
         bashcommand = "seqtk seq -A "+read2_file + ' > ' +read2_fasta
         os.system(bashcommand)
-        change_rid(read2_fasta, "r2", read2_tmp)
+        change_rid(read2_fasta, "-r2", "read2_tmp.fasta")
         # merge the two fasta file into one
         merge(read1_fasta, read2_fasta, merged_file)
     fin.close()
