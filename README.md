@@ -30,12 +30,11 @@ These codes build a blast database from the NGS data and blast search the databa
        7. Extract sequences for each virus whose mapped reads number is above a defined paramter "threshold" in "extract_seq.py", and output the reulsts into a newly made directory "seqs".
 
 # Merge read1 and read2 file into one before blast
-Creat a list file containing all ".fastq.gz" file names in a format as "file_list.txt":
-includes 3 columns gapped with a tab character "\t" in each line.
+Creat a list file containing all ".fastq.gz" file names in a file format including 3 columns gapped with a tab character "\t" in each line:
+
  	column1		column2		column3
 	read1.fastq.gz	read2.fastq.gz	merged_file #(with no extension)
-The read files (NGS data) are in ".fastq.gz" file format.
-
+	
 Then run as below:
     
     $ ./blastn_all_2.sh   
