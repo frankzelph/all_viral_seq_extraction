@@ -4,20 +4,22 @@ These codes build a blast database from the NGS data and blast search the databa
 
 # Note: these codes are only tested in bio-linux system.
 1. Some preparation.
-    a. Install softwares including sqlite3, blast-2.5+, python2.7, R, and seqtk
-    b. Download all viral sequences from NCBI:
-       ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/
-    c. Download taxonomy data from NCBI:
-       ftp://ftp.ncbi.nih.gov/pub/taxonomy/
+
+    	a. Install softwares including sqlite3, blast-2.5+, python2.7, R, and seqtk
+    	b. Download all viral sequences from NCBI:
+       		ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/
+    	c. Download taxonomy data from NCBI:
+       		ftp://ftp.ncbi.nih.gov/pub/taxonomy/
 
 2. Asign the sequences with taxonomy information according to accession.
-    a. Extract accessions from viral sequence file (in fasta format) by using "ac_extract.py".
-    b. Build a SQL database of accession and taxid from "nucl_gb.accession2taxid" file.
-    c. Search the SQL database, "names.dmp", "nodes.dmp", and "merged.dmp" by using "ac2sciname.py", to the species and family  scientific name of each accession.
+
+    	a. Extract accessions from viral sequence file (in fasta format) by using "ac_extract.py".
+    	b. Build a SQL database of accession and taxid from "nucl_gb.accession2taxid" file.
+    	c. Search the SQL database, "names.dmp", "nodes.dmp", and "merged.dmp" by using "ac2sciname.py", to the species and family  scientific name of each accession.
     
 3. Put all the other codes in the same directory with the NGS data in ".fastq.gz" format. Open a terminal and run the "blast_all.sh" bash codes as below: (# note: make sure all ".sh" file are excutable. if not, use "chmod u+x *.sh " to enable these code files excutably.)
 
-    $ ./blastn_all.sh
+    	$ ./blastn_all.sh
 
 
 # The code will excute in a process as below:
