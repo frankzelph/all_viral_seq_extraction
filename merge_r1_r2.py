@@ -34,33 +34,32 @@ def change_rid(fasta_file, read_direct, outfile):
         
 
 # function: parse file_list and combine two read file into one
-def main(file_list):
-    fin = open(file_list, 'r')
-    for line in fin:
-        tmp = re.split('\t', line.rstrip())
-        if len(tmp) != 3:
-            print "Error: some line in list file \""+file_list+"\" has not 3 columns."
-            os.system("exit 1")
-            return 1
-        read1_file = tmp[0]
-        read1_fasta = re.split('\.', read1_file)[0]+'.fasta'
-        read2_file = tmp[1]
+def main(read1_file, read2_file, merged_file):
+	read1_fasta = re.split('\.', read1_file)[0]+'.fasta'
         read2_fasta = re.split('\.', read2_file)[0]+'.fasta'
-        merged_file = tmp[2]+'.fasta'
+        merged_file = merged_file+'.fasta'
         # prepare read1 fasta file
-        bashcommand = "seqtk seq -A "+read1_file + ' > ' +read1_fasta
+        bashcommand = "seqtk trimfq "+read1_file + ' > ' +read1_file+".fq"
         os.system(bashcommand)
+        bashcommand = "seqtk seq -A "+read1_file+".fq" + ' > ' +read1_fasta
+        os.system(bashcommand)
+        os.system("rm -rf "+read1_file+".fq")
         
         change_rid(read1_fasta, "-r1", "read1_tmp.fasta")
         # prepare read2 fasta file
-        bashcommand = "seqtk seq -A "+read2_file + ' > ' +read2_fasta
+        bashcommand = "seqtk trimfq "+read2_file + ' > ' +read2_file+".fq"
         os.system(bashcommand)
+        bashcommand = "seqtk seq -A "+read2_file+".fq" + ' > ' +read2_fasta
+        os.system(bashcommand)
+        os.system("rm -rf "+read1_file+".fq")
         change_rid(read2_fasta, "-r2", "read2_tmp.fasta")
         # merge the two fasta file into one
         merge(read1_fasta, read2_fasta, merged_file)
-    fin.close()
 
 #============================ work =====================================#
-file_list = sys.argv[1]
-main(file_list)
+read1_file = sys.argv[1]
+read2_file = sys.argv[2]
+merged_file = sys.argv[3]
+
+main(read1_file, read2_file, merged_file)
 
