@@ -55,6 +55,9 @@ def main(fasta_file, bn6_file, stat_file, threshold):
         print bashCommand
         #subprocess.Popen(bashCommand)
         os.system(bashCommand)
+        bashCommand = 'rm -rf '+ids_file
+        print bashCommand
+        os.system(bashCommand)
 
 #===================begin work===========================#
 fasta_file = sys.argv[1]
