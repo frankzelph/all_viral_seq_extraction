@@ -9,7 +9,8 @@ ac_mapfile=/home/immu/database/blastdb/viral/ac2name/ac2sciname.txt
 # num_threads used in blastn
 num_threads=10
 
-# the limitation of the number of mapped reads to be extracted
+# If the number of the reads mapped to target A is above "threshold",
+# all the reads mapped to this target would be extracted.
 threshold=100
 
 
