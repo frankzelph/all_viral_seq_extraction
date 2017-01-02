@@ -25,7 +25,8 @@ ac_mapfile=$3
 # num_threads used in blastn
 num_threads=$4
 
-# the limitation of the number of mapped reads to be extracted
+# If the number of the reads mapped to target A is above "threshold",
+# all the reads mapped to this target would be extracted.
 threshold=$5
 
 
