@@ -39,5 +39,5 @@ Creat a list file containing all ".fastq.gz" file names in a file format includi
 	
 Then run as below:
     
-    $ ./blastn_all_2.sh   
+    $ ./blastn_all_2.sh file_list.txt
 It will call "merge_r1_r2.py" to merge read1 and read2 firstly, and then do blastn, annotation, statistics, and sequence extraction...
