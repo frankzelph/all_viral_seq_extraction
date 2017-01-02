@@ -1,7 +1,7 @@
 #!/bin/py
 # draw coverage figure of a virus.
 # Usage:
-#       python coverage.py bn6_file stat_file threshold
+#       python coverage.py bn6_file stat_file threshold viralseq_db
 
 import re
 import sys
@@ -12,8 +12,6 @@ from rpy2.robjects.packages import importr
 r = robjects.r
 grdevices = importr('grDevices')
 
-# Database location
-VIRAL_DB = "/home/immu/database/blastdb/viral/viral_all/viral.fna"
 
 # get the viral sequence length according to the accession and viral_db
 def seq_len(accession):
@@ -92,6 +90,8 @@ def main(bn6_file, stat_file, threshold):
 bn6_file = sys.argv[1]
 stat_file = sys.argv[2]
 threshold = int(sys.argv[3])
+# Database location
+VIRAL_DB = sys.argv[4] # "/home/immu/database/blastdb/viral/viral_all/viral.fna"
 
 main(bn6_file, stat_file, threshold)
 

@@ -45,7 +45,8 @@ fi
 # convert .fastq.gz file into .fasta file
 if [ ! -f "${file}.fasta" ]; then
     echo "Convert \"${gz_file}\" into fasta format."
-    seqtk seq -A $gz_file > ${file}.fasta
+    seqtk trimfq $gz_file > ${file}.fq
+    seqtk seq -A ${file}.fq > ${file}.fasta
 fi
 
 echo " Change directory to \"${file}\"."
@@ -89,7 +90,7 @@ if [ ! -d "cov_figs" ]; then
     mkdir "cov_figs"
 fi
 
-python ../coverage.py "blastout/${file}.bn6" "${file}.stat" $threshold
+python ../coverage.py "blastout/${file}.bn6" "${file}.stat" $threshold $query_seqfile
 
 # extract all viral sequences with the No. of mapped reads above threshold
 echo " Extracting those reads from the original fasta file..."
