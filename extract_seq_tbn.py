@@ -19,6 +19,13 @@ import sys
 #import subprocess
 import os
 
+# Load parameters
+fasta_file = sys.argv[1]
+tbn6_file = sys.argv[2]
+stat_file = sys.argv[3]
+threshold = int(sys.argv[4])
+pr_nt_ac_table = sys.argv[5]
+
 # Load relation table of protein and nuclei acid accessions
 pr_nt_map = {}
 fin = open(pr_nt_ac_table, 'r')
@@ -72,11 +79,7 @@ def main(fasta_file, bn6_file, stat_file, threshold):
         os.system(bashCommand)
 
 #===================begin work===========================#
-fasta_file = sys.argv[1]
-tbn6_file = sys.argv[2]
-stat_file = sys.argv[3]
-threshold = int(sys.argv[4])
-pr_nt_ac_table = sys.argv[5]
+
 
 main(fasta_file, tbn6_file, stat_file, threshold)
 

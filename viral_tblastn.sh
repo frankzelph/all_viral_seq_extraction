@@ -47,7 +47,7 @@ if [ ! -d $file ]; then
 fi
 
 # convert .fastq.gz file into .fasta file
-if [ ! -f "${file}.fasta" ]; then
+if [ ! -f ${file}.fasta ]; then
     echo "Convert \"${gz_file}\" into fasta format."
     seqtk trimfq $gz_file > ${file}.fq
     seqtk seq -A ${file}.fq > ${file}.fasta
@@ -56,25 +56,25 @@ fi
 echo " Change directory to \"${file}\"."
 cd $file
 # make a folder to store blast database files
-if [ ! -d "blastdb" ]; then
+if [ ! -d blastdb ]; then
     echo " Make a directory named \"blastdb\"."
     mkdir "blastdb"
 fi
 # make a folder to store blast results
-if [ ! -d "blastout" ]; then
+if [ ! -d blastout ]; then
     echo " Make a directory named \"blastout\"."
     mkdir "blastout"
 fi
 
 # makeblastdb
-if [ ! -f "blastdb/${file}.nhr" ] && [ ! -f "blastdb/${file}.00.nhr" ]; then
+if [ ! -f blastdb/${file}.nhr ] && [ ! -f blastdb/${file}.00.nhr ]; then
     echo " Build a blast database from \"${file}.fasta\" file..."
-    makeblastdb -in ../${file}.fasta -dbtype nucl -parse_seqids -out blastdb/$file
+    makeblastdb -in "../${file}.fasta" -dbtype nucl -parse_seqids -out blastdb/$file
 fi
 
 # blast all viral sequences against the read database
 if [ ! -f "blastout/${file}.bn6" ]; then
-    echo " Blastn search all viral sequences from the built database..."
+    echo " tblastn search all viral sequences from the built database..."
     tblastn -query $query_seqfile -out "blastout/${file}.tbn6" -db blastdb/$file -outfmt 6 -evalue 1e-5 -num_threads $num_threads -max_target_seqs 100000000
 fi
 
@@ -88,7 +88,7 @@ if [ ! -f "${file}-pr.stat" ]; then
 fi
 
 # extract all viral sequences with the No. of mapped reads above threshold
-echo " Drawing coverage figures for those viruses of whose mapped reads number are above threshold..."
+echo " Drawing coverage figures for those viruses of whose mapped reads number are above $threshold..."
 # rm -rf cov_figs
 if [ ! -d "cov_figs" ]; then
     mkdir "cov_figs"

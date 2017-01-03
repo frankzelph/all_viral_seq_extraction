@@ -37,7 +37,7 @@ def convt(pr_acc, pr_start, pr_end):
     # if nt_end > int(pr_nt_map[pr_acc][3]):
     #    print "Error: protein end out of cds range!"
     #    return -1
-	return (nt_start, nt_end)
+    return (nt_start, nt_end)
 	
 # Calculate the coverage of each nucleotide 
 def coverage(mapped_region, accession):
