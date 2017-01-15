@@ -73,7 +73,7 @@ if [ ! -f blastdb/${file}.nhr ] && [ ! -f blastdb/${file}.00.nhr ]; then
 fi
 
 # blast all viral sequences against the read database
-if [ ! -f "blastout/${file}.bn6" ]; then
+if [ ! -f "blastout/${file}.tbn6" ]; then
     echo " tblastn search all viral sequences from the built database..."
     tblastn -query $query_seqfile -out "blastout/${file}.tbn6" -db blastdb/$file -outfmt 6 -evalue 1e-5 -num_threads $num_threads -max_target_seqs 100000000
 fi
@@ -84,7 +84,7 @@ fi
 # do statistics and annotation
 if [ ! -f "${file}-pr.stat" ]; then
     echo " Do statistics of the mapped viral reads..."
-    python ../sp_name_anno_tbn.py "blastout/${file}.tbn6" $ac_mapfile ${file}-pr.stat $prNtAc_mapfile
+    python ../sp_name_anno_tbn.py "blastout/${file}.tbn6" $ac_mapfile $prNtAc_mapfile ${file}-pr.stat
 fi
 
 # extract all viral sequences with the No. of mapped reads above threshold

@@ -9,6 +9,14 @@ from Bio import SeqIO
 from rpy2 import robjects
 from rpy2.robjects.packages import importr
 
+# Load arguments
+bn6_file = sys.argv[1]
+stat_file = sys.argv[2]
+threshold = int(sys.argv[3])
+# Database location
+pr_nt_ac_table = sys.argv[4]
+
+# Set R package for graphics
 r = robjects.r
 grdevices = importr('grDevices')
 
@@ -102,11 +110,6 @@ def main(bn6_file, stat_file, threshold):
 
 
 #===================begin work===========================#
-bn6_file = sys.argv[1]
-stat_file = sys.argv[2]
-threshold = int(sys.argv[3])
-# Database location
-pr_nt_ac_table = sys.argv[4]
 
 main(bn6_file, stat_file, threshold)
 
