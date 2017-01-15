@@ -33,7 +33,7 @@ do
 		exit 1
 	fi
 	# Merge read1 and read2 into one fasta file
-	if [ ! -f ${merge_file}.fasta]; then
+	if [ ! -f ${merge_file}.fasta ]; then
 		python merge_r1_r2.py $read1_file $read2_file ${merge_file}.fasta
 	fi
 	# blastn search and target sequence extraction
