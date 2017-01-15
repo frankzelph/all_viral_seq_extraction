@@ -86,7 +86,7 @@ fi
 
 # extract all viral sequences with the No. of mapped reads above threshold
 echo " Drawing coverage figures for those viruses of whose mapped reads number are above threshold..."
-rm -rf cov_figs
+#rm -rf cov_figs
 if [ ! -d "cov_figs" ]; then
     mkdir "cov_figs"
 fi
@@ -95,7 +95,7 @@ python ../coverage.py "blastout/${file}.bn6" "${file}.stat" $threshold $query_se
 
 # extract all viral sequences with the No. of mapped reads above threshold
 echo " Extracting those reads from the original fasta file..."
-rm -rf seqs
+#rm -rf seqs
 if [ ! -d "seqs" ]; then
     mkdir "seqs"
 fi
