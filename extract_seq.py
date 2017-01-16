@@ -18,7 +18,7 @@ import sys
 #import subprocess
 import os
 
-# get read ids from .bn6 file according to accession
+
 # get read ids from .bn6 file according to accession
 def read_id(bn6_file, accession, outfile):
     fin = open(bn6_file, 'r')
@@ -33,7 +33,7 @@ def read_id(bn6_file, accession, outfile):
     fout.close()
 
 # get read ids from .bn6 file according to accession
-def main(fasta_file, bn6_file, stat_file, threshold):
+def main(fasta_file, bn6_file, stat_file, threshold, outfolder):
     # Load viral accessions with the mapped reads No. of which are above threshold
     viral_name = {}
     fstat = open(stat_file, 'r')
@@ -48,8 +48,8 @@ def main(fasta_file, bn6_file, stat_file, threshold):
     print "Number of the mapped viruses (reads No. above:", threshold, "):", len(viral_name.keys())
     # Extract reads of each virus by using bash command
     for each in viral_name.keys():
-        ids_file = "seqs/"+viral_name[each]+'.ids'
-        out_seqfile = "seqs/"+viral_name[each]+'.fa'
+        ids_file = outfolder+'/'+viral_name[each]+'.ids'
+        out_seqfile = outfolder+'/'+viral_name[each]+'.fa'
         read_id(bn6_file, each, ids_file)
         bashCommand = 'seqtk subseq '+fasta_file+' '+ids_file+' > '+out_seqfile
         print bashCommand
@@ -64,8 +64,9 @@ fasta_file = sys.argv[1]
 bn6_file = sys.argv[2]
 stat_file = sys.argv[3]
 threshold = int(sys.argv[4])
+outfolder = sys.argv[5]
 
-main(fasta_file, bn6_file, stat_file, threshold)
+main(fasta_file, bn6_file, stat_file, threshold, outfolder)
 
 
 

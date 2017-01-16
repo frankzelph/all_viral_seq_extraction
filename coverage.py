@@ -35,10 +35,10 @@ def coverage(mapped_region, accession):
     return cov
 
 # define a function for drawing figures by using R
-def cov_fig(cov, viral_name):
+def cov_fig(cov, viral_name, outfolder):
     x = robjects.IntVector(range(1, len(cov)+1))
     y = robjects.IntVector(cov)
-    grdevices.png(file='cov_figs/'+viral_name+'.png', width = 1000, height = 300)
+    grdevices.png(file=outfolder+'/'+viral_name+'.png', width = 1000, height = 300)
     r.plot(x=x, y=y, xlab="Nucleotide Position", ylab="Coverage", \
            main = viral_name, type='l')
     grdevices.dev_off()
@@ -56,7 +56,7 @@ def virus_name(accession, stat_file):
     return viral_name
 
 # get read ids from .bn6 file according to accession
-def main(bn6_file, stat_file, threshold):
+def main(bn6_file, stat_file, threshold, outfolder):
     # Load viral accessions with the mapped reads No. of which are above threshold
     mapped_region = {}
     fstat = open(stat_file, 'r')
@@ -81,7 +81,7 @@ def main(bn6_file, stat_file, threshold):
     
     # draw coverage figures for each target sequence
     for key in mapped_region.keys():
-        cov_fig(coverage(mapped_region[key], key), virus_name(key, stat_file))
+        cov_fig(coverage(mapped_region[key], key), virus_name(key, stat_file), outfolder)
     
         
 
@@ -92,6 +92,7 @@ stat_file = sys.argv[2]
 threshold = int(sys.argv[3])
 # Database location
 VIRAL_DB = sys.argv[4] # "/home/immu/database/blastdb/viral/viral_all/viral.fna"
+outfolder = sys.argv[5]
 
-main(bn6_file, stat_file, threshold)
+main(bn6_file, stat_file, threshold, outfolder)
 
