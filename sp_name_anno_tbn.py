@@ -31,7 +31,7 @@ fin = open(prNtAc_table, 'r')
 fst_line = fin.readline()
 for line in fin:
     tmp = re.split('\t', line.rstrip())
-    if tmp[0] not in pr_nt_map.keys():
+    if tmp[0] not in prNt_map.keys():
         prNt_map[tmp[0]] = tmp[1]
 fin.close()
 
