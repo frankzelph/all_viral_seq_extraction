@@ -42,8 +42,8 @@ stat = {}
 for line in fin:
     tmp = re.split('\t', line.rstrip())
     pr_acc = re.split('\|', tmp[0])[3]
-    pr_acc = re.split('\.', acc)[0]
-    nt_acc = prNt_map[pr_acc][0]
+    pr_acc = re.split('\.', pr_acc)[0]
+    nt_acc = prNt_map[pr_acc]
     if nt_acc not in stat.keys():
         stat[nt_acc] = 1  # count read number mapped to this virus
     else:
