@@ -31,7 +31,7 @@ for line in fin:
     if tmp[0] not in pr_nt_map.keys():
         pr_nt_map[tmp[0]] = tmp[1:]
     if tmp[1] not in nt_len.keys():
-        nt_len[tmp[1]] = tmp[2]
+        nt_len[tmp[1]] = int(tmp[2])
 fin.close()
 
 
@@ -97,7 +97,7 @@ def main(bn6_file, stat_file, threshold, outfolder):
     for line in fin:
         tmp = re.split('\t', line.rstrip())
         pr_acc = re.split('\|', tmp[0])[3]
-        pr_acc = re.split('\.', acc)[0]
+        pr_acc = re.split('\.', pr_acc)[0]
         nt_acc = pr_nt_map[pr_acc][0]
         if nt_acc in mapped_region.keys():
             mapped_region[nt_acc].append(convt(pr_acc, int(tmp[6]), int(tmp[7])))

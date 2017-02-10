@@ -45,7 +45,7 @@ def read_id(tbn6_file, accession, outfile):
     for line in fin:
         tmp = re.split('\t', line.rstrip())
         pr_acc = re.split('\|', tmp[0])[3]
-        pr_acc = re.split('\.', acc)[0]
+        pr_acc = re.split('\.', pr_acc)[0]
         nt_acc = pr_nt_map[pr_acc]
         if nt_acc == accession:
             fout.write(tmp[1]+'\n')
